@@ -21,17 +21,17 @@ main = do
     vector <- evaluate $ force (V.fromList sortedlist)
     start <- getCPUTime
     bool <- evaluate $ force (map (binarysearch vector) randkey)
-    evaluate(rnf bool)
+    --evaluate(rnf bool)
     end <- getCPUTime
-    putStr (show (cpuTimePrecision))
+    --putStr (show (cpuTimePrecision))
 
 
-    let time1 = (end - start) `div` fromIntegral trials
+    let time1 = fromIntegral (end - start) / 1000000000000
 
     start <- getCPUTime
-    --bool <- evaluate $ force (map (linearsearch vector) maxkey)
+    bool <- evaluate $ force (map (linearsearch vector) maxkey)
     end <- getCPUTime
 
-    let time2 = (end - start) `div` fromIntegral (trials * (10^6))
-    putStrLn (show bool)
-    putStrLn ("Binary Search Average run time over " ++ show(trials) ++ " lists:" ++ (show time1) ++ " 10^-12 seconds vs Linear Search Average Runtime over " ++ show(trials) ++ " lists:" ++ (show time2) ++ " 10^-6 seconds")
+    let time2 = fromIntegral (end - start) / 1000000000000
+    --putStrLn (show bool)
+    putStrLn ("Binary Search Average run time over " ++ show(trials) ++ " lists:" ++ (show time1) ++ " seconds vs Linear Search Average Runtime over " ++ show(trials) ++ " lists:" ++ (show time2) ++ " seconds")
