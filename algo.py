@@ -84,9 +84,13 @@ print("Worstcase for binary search: {:.10f} seconds".format(((end4 - end3) / flo
 #We can just do TotalTime/(Total Lines of Code) in the case of the worscase total lines of code is 5log(n)
 #So we just do the time it takes to run the code / 5log(10^5) so our code to calculate that looks like:
 
+#Linear search is obviously THETA(n)
+
 linetimeb = (end4 - end3) / (math.log(len(list),2))
 linetimel = (end3-end2) / (len(list))
 
 print("Time to run 1 line of code as calculated from binary search: "+str(linetimeb))
 print("Time to run 1 line of code as calculated from linear search: "+str(linetimel))
 
+print("Estimated time to run binary search on an input of 10^9:"+str(linetimeb * 10 ** 9)+ " seconds")
+print("Estimated time to run binary search on an input of 10^9:"+str(linetimel * 10 ** 9)+ " seconds")
